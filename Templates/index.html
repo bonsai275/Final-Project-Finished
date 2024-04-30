@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Genre</title>
+    <link rel="icon" href="http://127.0.0.1:8080/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <style>
+        /* Styling for the body */
+        body {
+            font-family: "Dosis", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url(http://10.0.0.22:8080/background.jpg);
+            background-size: cover;
+            color: white;
+            font-size: 20px;
+        }
+
+        /* Styling for the form */
+        form {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
+            margin-bottom: 10px;
+        }
+
+        /* Styling for the buttons */
+        button {
+            display: block;
+            margin: 0 5px;
+        }
+
+        /* Styling for the h1 heading */
+        h1 {
+            font-family: "Times", Times New Roman, serif;
+            font-size: 48px;
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Styling for the h2 heading */
+        h2 {
+            font-family: "Times", Times New Roman, serif;
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 77%;
+        }
+
+        /* Media query for smaller screens */
+        @media screen and (max-width: 600px) {
+            body {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            form {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button {
+                margin: 5px;
+            }
+        }
+
+        /* Styling for the table container */
+        .table-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        /* Styling for the table */
+        table {
+            margin-top: 20px;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        td {
+            padding: 0px 65px 0px 0px;
+        }
+
+        th {
+            padding: 0px 65px 0px 0px;
+        }
+
+        /* Styling for the random color box */
+        .random-color-box {
+            width: 20px;
+            height: 20px;
+            background-color: #000;
+        }
+
+        /* Styling for the table title */
+        .table-title {
+            font-size: 30px;
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Styling for the description */
+        .description {
+            font-size: 20px;
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Styling for the URL button */
+        .url-btn {
+            font-family: "Dosis", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            display: inline-block;
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 1em;
+            text-decoration: none;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styling for the submit button */
+        .submit-btn {
+            font-family: "Dosis", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            display: inline-block;
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 1em;
+            text-decoration: none;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styling for the submit button on hover */
+        .url-btn:hover {
+            text-decoration: underline;
+            color: black;
+        }
+        .submit-btn:hover {
+        text-decoration: underline;
+        color: black;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>MelodyMix</h1>
+    <h2 class="description">Don't know what to listen to? Then you've come to the right place; Melody Mix is THE site for people who don't know what they want to listen to. Simply click one of the genre buttons below and be whisked away to music paradise!</h2>
+    <form method="POST" action="playlist.html">
+        <label for="genre">Genre:</label>
+        <button type="submit" name="genre" value="Rock" formaction="/playlist/Rock">Rock</button>
+        <button type="submit" name="genre" value="Pop" formaction="/playlist/Pop">Pop</button>
+        <button type="submit" name="genre" value="Hip Hop" formaction="/playlist/Hip Hop">Hip Hop</button>
+        <button type="submit" name="genre" value="Country" formaction="/playlist/Country">Country</button>
+        <button type="submit" name="genre" value="Jazz" formaction="/playlist/Jazz">Jazz</button>
+        <button type="submit" name="genre" value="Random" formaction="/playlist/Random">Random</button>
+    </form>
+    <iframe width="560" height="250" src="https://www.youtube.com/embed/FauDn2LkeQ4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <div class="table-container">
+        <h2 class="table-title">Recent Top 25</h2>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Album</th>
+                <th style="color: white;">Genre</th>
+                <th>Length</th>
+                <th>Year</th>
+                <th>URL</th>
+            </tr>
+            {% for song in playlist %}
+            <tr>
+                <td>{% if song.title %}{{ song.title }}{% endif %}</td>
+                <td>{% if song.artist %}{{ song.artist }}{% endif %}</td>
+                <td>{% if song.album %}{{ song.album }}{% endif %}</td>
+                <td>{% if song.genre %}{{ song.genre }}{% endif %}</td>
+                <td>{% if song.length %}{{ song.length }}{% endif %}</td>
+                <td>{% if song.year %}{{ song.year }}{% endif %}</td>
+                <td>{% if song.url %}<a href="{{ song.url }}" {{ song.url }} class="url-btn"><button>{{song.title}}</button></a>{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+</body>
+</html>

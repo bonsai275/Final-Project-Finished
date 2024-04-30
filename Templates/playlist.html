@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Playlist</title>
+    <link rel="icon" href="http://127.0.0.1:8080/favicon.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: "Times", Times New Roman, serif;
+            background-color: #9d5aa6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #9d5aa6; /* Set background color to a lighter version of 6d2e89 */
+            text-align: center
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        td {
+            background-color: #fff;
+            color: #333;
+            padding: 10px;
+        }
+
+        tr:nth-child(odd) {
+            background-color: darkgray;
+        }
+
+        .random-color-box {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <!-- Table header -->
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th>Genre</th>
+            <th>Length</th>
+            <th>Year</th>
+            <th>URL</th>
+        </tr>
+        <!-- Loop through the playlist and display each song -->
+        {% for song in playlist %}
+        <tr>
+            <td>{% if song.title %}{{ song.title }}{% endif %}</td>
+            <td>{% if song.artist %}{{ song.artist }}{% endif %}</td>
+            <td>{% if song.album %}{{ song.album }}{% endif %}</td>
+            <td>{% if song.genre %}{{ genre }}{% endif %}</td>
+            <td>{% if song.length %}{{ song.length }}{% endif %}</td>
+            <td>{% if song.year %}{{ song.year }}{% endif %}</td>
+            <td>{% if song.url %}<a href="{{ song.url }}">{{ song.url }}</a>{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
